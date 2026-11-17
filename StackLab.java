@@ -25,7 +25,7 @@ public class StackLab {
         for(int i = 0; i < a.length; i++){
             s.push(a[i]);
         }
-        return new IntStack();
+        return s;
     }
 
     // Step 5: return a new array with the items of a in reverse order.
@@ -34,7 +34,10 @@ public class StackLab {
     // Do not count backwards with an index. The stack reverses for you.
     static int[] reverse(int[] a) {
         int[] result = new int[a.length];
-        // TODO Step 5
+        IntStack s = pushAll(a);
+        for (int i = 0; i < result.length; i++) {
+            result[i] = s.pop();
+        }
         return result;
     }
 
@@ -48,8 +51,14 @@ public class StackLab {
     //         }
     //     }
     static int countOpen(String s) {
-        // TODO Step 6
-        return -1;
+        IntStack stack = new IntStack();
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(c == '('){
+                stack.push(1);
+            }
+        }
+        return stack.size();
     }
 
     // Step 7: are the parentheses balanced? Copy your Step 6 code, then:
@@ -62,8 +71,16 @@ public class StackLab {
     // "IllegalStateException: stack is empty". A ')' came when nothing was
     // on the stack. Before the pop, check for that and return false.
     static boolean balanced(String s) {
-        // TODO Steps 7 and 8
-        return false;
+        IntStack stack = new IntStack();
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(c == '('){
+                stack.push(1);
+            } else if(c == ')' && !stack.isEmpty()){
+                stack.pop();
+            }
+        }
+        return stack.isEmpty();
     }
 
     // ---------- checks: do not change below this line ----------
