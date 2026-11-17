@@ -21,7 +21,10 @@ public class StackLab {
     // Before you run it: pushAll of [1 2 3 4] prints top first. What will
     // the check show? Write your guess in the text box on Blackboard.
     static IntStack pushAll(int[] a) {
-        // TODO Step 4
+        IntStack s = new IntStack();
+        for(int i = 0; i < a.length; i++){
+            s.push(a[i]);
+        }
         return new IntStack();
     }
 

@@ -44,8 +44,12 @@ public class IntStack {
     // Step 2: what if the stack is empty? Then top is null and top.item
     // crashes. Before line 1, add the same if that peek has.
     public int pop() {
-        // TODO Step 1, then Step 2
-        return 0;
+        if(isEmpty()){
+            throw new IllegalStateException("stack is empty");
+        }
+        int saved = top.item;
+        top = top.next;
+        return saved;
     }
 
     // Step 3: return how many items are on the stack.
@@ -61,11 +65,17 @@ public class IntStack {
     // count = count + 1;  and return count after the loop.
     // Walk with current, never with top: moving top changes the stack.
     public int size() {
-        // TODO Step 3
-        return -1;
+        int count = 0;
+        Node current = top;
+        while(current != null){
+            count ++;
+            current = current.next;
+        }
+        return count;
     }
 
-    // Done for you: the items from top to bottom, like "30 20 10".
+    // Done for you: the items from t
+    // op to bottom, like "30 20 10".
     public String toString() {
         String s = "";
         Node current = top;
